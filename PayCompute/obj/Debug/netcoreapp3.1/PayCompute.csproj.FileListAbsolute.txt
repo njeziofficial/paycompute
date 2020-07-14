@@ -186,3 +186,4 @@ C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\staticwebassets\Pay
 C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\PayCompute.dll
 C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\PayCompute.pdb
 C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\PayCompute.genruntimeconfig.cache
+C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs

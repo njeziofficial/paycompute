@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting.Internal;
 using PayCompute.Entity;
@@ -14,9 +15,9 @@ namespace PayCompute.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeService _employeeService;
-        private readonly HostingEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public EmployeeController(IEmployeeService employeeService, HostingEnvironment hostingEnvironment)
+        public EmployeeController(IEmployeeService employeeService, IWebHostEnvironment hostingEnvironment)
         {
             _employeeService = employeeService;
             _hostingEnvironment = hostingEnvironment;
@@ -86,7 +87,7 @@ namespace PayCompute.Controllers
                     var extension = Path.GetExtension(model.ImageUrl.FileName);
 
                     //The hosting environment
-                    var webRootPath = _hostingEnvironment.ContentRootPath;
+                    var webRootPath = _hostingEnvironment.WebRootPath;
 
                     //Now creating the unique file name
                     fileName = DateTime.UtcNow.ToString("yymmssfff") + fileName + extension;
