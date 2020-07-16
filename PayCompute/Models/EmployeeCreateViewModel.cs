@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http; 
 using PayCompute.Entity;
 
 namespace PayCompute.Models
 {
-    public class EmployeeCreateViewModel
+    public class EmployeeCreateViewModel                                                                                                                                                                                                                                                                                                                                         
     {
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Employee Number is required"),
-        RegularExpression(@"`[A-Z] {3,3} [0-9] {3}$")]
+        RegularExpression(@"^[A-Z]{3,3}[0-9]{3}$")]
         public string EmployeeNo { get; set; }
 
         [Required(ErrorMessage = "First Name is required"), StringLength(50, MinimumLength = 2)]
-        [RegularExpression(@"`[A-Z] [a-zA-Z""'\s-]*$"), Display(Name = "First Name")]
+        [RegularExpression(@"^[A-Z] [a-zA-Z""'\s-]*$"), Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [StringLength(50), Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
 
         [Required(ErrorMessage = "Last Name is required"), StringLength(50, MinimumLength = 2)]
-        [RegularExpression(@"`[A-Z] [a-zA-Z""'\s-]*$"), Display(Name = "Last Name")]
+        [RegularExpression(@"^[A-Z] [a-zA-Z""'\s-]*$"), Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         public string FullName => FirstName + (string.IsNullOrEmpty(MiddleName) ?
@@ -45,11 +45,11 @@ namespace PayCompute.Models
         [Required(ErrorMessage = "Job Role is required"), StringLength(100)]
         public string Designation { get; set; }
 
-        [DataType(DataType.EmailAddress), Display(Name = "Ni No.")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         //SSN 000-00-0000 @`/d{3}-/d{2}-/d{4}$
-        [RegularExpression(@"`[A-CEGHJ-PR-TW-Z]{1} [A-CEGHJ-NPR-TW-Z]{1} [0-9]{6} [A-D\s]$")]
+        [RegularExpression(@"^[A-CEGHJ-PR-TW-Z]{1} [A-CEGHJ-NPR-TW-Z]{1} [0-9]{6} [A-D\s]$"), Display(Name="NI No.")]
         public string NationalInsuranceNo { get; set; }
 
         [Display(Name = "Payment Method")]
