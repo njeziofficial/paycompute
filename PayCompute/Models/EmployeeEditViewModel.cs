@@ -13,18 +13,18 @@ namespace PayCompute.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Employee Number is required"),
-        RegularExpression(@"`[A-Z] {3,3} [0-9] {3}$")]
+        RegularExpression(@"^[A-Z]{3,3}[0-9]{3}$")]
         public string EmployeeNo { get; set; }
 
         [Required(ErrorMessage = "First Name is required"), StringLength(50, MinimumLength = 2)]
-        [RegularExpression(@"`[A-Z] [a-zA-Z""'\s-]*$"), Display(Name = "First Name")]
+        [RegularExpression(@"^[A-Z][a-zA-Z""'\s-]*$"), Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [StringLength(50), Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
 
         [Required(ErrorMessage = "Last Name is required"), StringLength(50, MinimumLength = 2)]
-        [RegularExpression(@"`[A-Z] [a-zA-Z""'\s-]*$"), Display(Name = "Last Name")]
+        [RegularExpression(@"^[A-Z][a-zA-Z""'\s-]*$"), Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         public string Gender { get; set; }
@@ -45,7 +45,7 @@ namespace PayCompute.Models
         public string Email { get; set; }
 
         //SSN 000-00-0000 @`/d{3}-/d{2}-/d{4}$
-        [RegularExpression(@"`[A-CEGHJ-PR-TW-Z]{1} [A-CEGHJ-NPR-TW-Z]{1} [0-9]{6} [A-D\s]$")]
+        [RegularExpression(@"^[A-CEGHJ-PR-TW-Z]{1}[A-CEGHJ-NPR-TW-Z]{1}[0-9]{6}[A-D\s]$")]
         public string NationalInsuranceNo { get; set; }
 
         [Display(Name = "Payment Method")]
