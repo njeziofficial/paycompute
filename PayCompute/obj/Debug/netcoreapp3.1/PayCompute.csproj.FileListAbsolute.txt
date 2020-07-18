@@ -190,4 +190,4 @@ C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\Razor\Views\Shared\
 C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\Razor\Views\Employee\Index.cshtml.g.cs
 C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\Razor\Views\Employee\Create.cshtml.g.cs
 C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\Razor\Views\Employee\Edit.cshtml.g.cs
-C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\Razor\Views\Employee\Detailcshtml.cshtml.g.cs
+C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\Razor\Views\Employee\Detail.cshtml.g.cs
