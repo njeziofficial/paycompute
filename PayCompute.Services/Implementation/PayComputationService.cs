@@ -73,20 +73,16 @@ namespace PayCompute.Services.Implementation
             return contractualEarnings;
         }
 
-        public decimal OvertimeRate(decimal hourlyRate) => hourlyRate*1.5
+        public decimal OvertimeRate(decimal hourlyRate) => hourlyRate * 1.5m;
 
         public decimal OvertimeEarnings(decimal overtimeRate, decimal overtimeHours) =>
             overtimeHours * overtimeRate;
 
-        public decimal TotalEarnings(decimal overtimeEarnings, decimal contractualEarnings)
-        {
-            throw new NotImplementedException();
-        }
+        public decimal TotalEarnings(decimal overtimeEarnings, decimal contractualEarnings) =>
+            overtimeEarnings + contractualEarnings;
 
-        public decimal TotalDeduction(decimal tax, decimal nic, decimal studentLoanRepayment, decimal unionFees)
-        {
-            throw new NotImplementedException();
-        }
+        public decimal TotalDeduction(decimal tax, decimal nic, decimal studentLoanRepayment, decimal unionFees) =>
+            tax + nic + studentLoanRepayment + unionFees;
 
         public decimal NetPay(decimal totalEarnings, decimal totalDeduction) =>
             totalEarnings - totalDeduction;
