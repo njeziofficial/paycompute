@@ -4,7 +4,8 @@ using System.Text;
 
 namespace PayCompute.Services
 {
-    interface ITaxService
-    {
-    }
+   public interface ITaxService
+   {
+       decimal TaxAmount(decimal totalAmount);
+   }
 }
