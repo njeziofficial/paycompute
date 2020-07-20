@@ -14,19 +14,27 @@ namespace PayCompute.Controllers
         private readonly IPayComputationService _payComputationService;
         private readonly IEmployeeService _employeeService;
         private readonly ITaxService _taxService;
+        private readonly INationalInsuranceContributionService _nationalInsuranceContributionService;
         private decimal overtimeHrs;
         private decimal contractualEarnings;
         private decimal overtimeEarnings;
         private decimal totalEarnings;
         private int employeeId;
+        private decimal tax;
+        private decimal nationalInsurance;
+        private decimal unionFee;
+        private decimal studentLoan;
+        private decimal totalDeduction;
 
         public PayController(IPayComputationService payComputationService,
             IEmployeeService employeeService,
-            ITaxService taxService)
+            ITaxService taxService,
+            INationalInsuranceContributionService nationalInsuranceContributionService)
         {
             _payComputationService = payComputationService;
             _employeeService = employeeService;
             _taxService = taxService;
+            _nationalInsuranceContributionService = nationalInsuranceContributionService;
         }
 
         public IActionResult Index()
@@ -60,14 +68,14 @@ namespace PayCompute.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(PaymentRecordCreateViewModel model)
+        public async Task<IActionResult> Create(PaymentRecordCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var payRecord = new PaymentRecord
                 {
                     Id = model.Id,
-                    EmployeeId=employeeId = model.EmployeeId,
+                    EmployeeId = employeeId = model.EmployeeId,
                     FullName = _employeeService.GetById(model.EmployeeId).FullName,
                     NiNo = _employeeService.GetById(model.EmployeeId).NationalInsuranceNo,
                     PayDate = model.PayDate,
@@ -80,13 +88,24 @@ namespace PayCompute.Controllers
                     OvertimeHours = overtimeHrs = _payComputationService.OvertimeHours(model.HoursWorked, model.ContractualHours),
                     ContractualEarnings = _payComputationService.ContractualEarnings(model.ContractualHours, model.HoursWorked, model.HourlyRate),
                     OvertimeEarnings = overtimeEarnings = _payComputationService.OvertimeEarnings(_payComputationService.OvertimeRate(model.HourlyRate), overtimeHrs),
-                    TotalEarnings=totalEarnings = _payComputationService.TotalEarnings(overtimeEarnings, contractualEarnings),
-                    Tax =_taxService.TaxAmount(totalEarnings),
-                    UnionFee = _employeeService.UnionFees(employeeId),
-                    SLC = _employeeService.StudentLoanRepaymentAmount(employeeId, totalEarnings),
-                    
+                    TotalEarnings = totalEarnings = _payComputationService.TotalEarnings(overtimeEarnings, contractualEarnings),
+                    Tax = tax = _taxService.TaxAmount(totalEarnings),
+                    UnionFee = unionFee = _employeeService.UnionFees(employeeId),
+                    SLC = studentLoan = _employeeService.StudentLoanRepaymentAmount(employeeId, totalEarnings),
+                    NIC = nationalInsurance = _nationalInsuranceContributionService.NIContribution(totalEarnings),
+                    TotalDeduction = totalDeduction = _payComputationService.TotalDeduction(tax, nationalInsurance, studentLoan, unionFee),
+                    NetPayment = _payComputationService.NetPay(totalEarnings, totalDeduction)
                 };
+               await _payComputationService.CreateAsync(payRecord);
+                return RedirectToAction(nameof(Index));
             }
+            ViewBag.employees = _employeeService.GetAllEmployeesForPayroll();
+            ViewBag.taxYears = _payComputationService.GetAllTaxYear();
+            return View();
+        }
+
+        public IActionResult Detail(int id)
+        {
             return View();
         }
     }
