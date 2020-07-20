@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PayCompute.Entity;
 using PayCompute.Persistence;
@@ -93,5 +94,12 @@ namespace PayCompute.Services.Implementation
         }
 
         public IEnumerable<Employee> GetAll() => _context.Employees;
+
+        public IEnumerable<SelectListItem> GetAllEmployeesForPayroll() => GetAll().Select(employee => new SelectListItem
+        {
+            Text = employee.FullName,
+            Value = employee.Id.ToString()
+        });
+
     }
 }

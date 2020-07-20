@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 using PayCompute.Entity;
 
 namespace PayCompute.Models
 {
-    public class PaymentMethodCreateViewModel
+    public class PaymentRecordCreateViewModel
     {
         public int Id { get; set; }
 
@@ -46,47 +42,46 @@ namespace PayCompute.Models
         public decimal HoursWorked { get; set; }
 
 
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal ContractualHours { get; set; }
+        [Display(Name = "Contractual Hours")] public decimal ContractualHours { get; set; } = 144m;
 
 
-        [Column(TypeName = "decimal(18, 2)")]
+        
         public decimal OvertimeHours { get; set; }
 
 
-        [Column(TypeName = "money")]
+        
         public decimal ContractualEarnings { get; set; }
 
 
-        [Column(TypeName = "money")]
+        
         public decimal OvertimeEarnings { get; set; }
 
 
-        [Column(TypeName = "money")]
+        
         public decimal Tax { get; set; }
 
 
-        [Column(TypeName = "money")]
+        
         public decimal NIC { get; set; }
 
 
-        [Column(TypeName = "money")]
+        
         public decimal? UnionFee { get; set; }
 
 
-        [Column(TypeName = "money")]
+        
         public decimal? SLC { get; set; }
 
 
-        [Column(TypeName = "money")]
+        
         public decimal TotalEarnings { get; set; }
 
 
-        [Column(TypeName = "money")]
+        
         public decimal TotalDeduction { get; set; }
 
 
-        [Column(TypeName = "money")]
+        
         public decimal NetPayment { get; set; }
 
 
