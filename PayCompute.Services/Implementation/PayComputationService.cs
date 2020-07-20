@@ -31,6 +31,9 @@ namespace PayCompute.Services.Implementation
                 .SingleOrDefault(pay =>
                     pay.Id == id);
 
+        public TaxYear GetTaxYearById(int id) => _context.TaxYears.FirstOrDefault(year =>
+            year.Id == id);
+
         public IEnumerable<PaymentRecord> GetAll() => _context.PaymentRecords.OrderBy(p => p.EmployeeId);
 
         public IEnumerable<SelectListItem> GetAllTaxYear()
