@@ -196,3 +196,4 @@ C:\Projects\PayComputeApp\PayCompute\bin\Debug\netcoreapp3.1\Microsoft.AspNetCor
 C:\Projects\PayComputeApp\PayCompute\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Projects\PayComputeApp\PayCompute\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
 C:\Projects\PayComputeApp\PayCompute\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\Razor\Views\Pay\Index.cshtml.g.cs

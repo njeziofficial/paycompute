@@ -38,6 +38,9 @@ namespace PayCompute
             services.AddRazorPages();
             //Dependency Injection of EmployeesService
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<INationalInsuranceContributionService, NationalInsuranceContributionService>();
+            services.AddScoped<IPayComputationService, PayComputationService>();
+            services.AddScoped<ITaxService, TaxService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

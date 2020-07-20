@@ -15,18 +15,18 @@ namespace PayCompute.Controllers
         private readonly IEmployeeService _employeeService;
         private readonly ITaxService _taxService;
         private readonly INationalInsuranceContributionService _nationalInsuranceContributionService;
-        private decimal overtimeHrs;
-        private decimal contractualEarnings;
-        private decimal overtimeEarnings;
-        private decimal totalEarnings;
-        private int employeeId;
-        private decimal tax;
-        private decimal nationalInsurance;
-        private decimal unionFee;
-        private decimal studentLoan;
-        private decimal totalDeduction;
-        private int taxYearId;
-        private decimal hourlyRate;
+        private decimal _overtimeHrs;
+        private decimal _contractualEarnings;
+        private decimal _overtimeEarnings;
+        private decimal _totalEarnings;
+        private int _employeeId;
+        private decimal _tax;
+        private decimal _nationalInsurance;
+        private decimal _unionFee;
+        private decimal _studentLoan;
+        private decimal _totalDeduction;
+        private int _taxYearId;
+        private decimal _hourlyRate;
 
         public PayController(IPayComputationService payComputationService,
             IEmployeeService employeeService,
@@ -77,7 +77,7 @@ namespace PayCompute.Controllers
                 var payRecord = new PaymentRecord
                 {
                     Id = model.Id,
-                    EmployeeId = employeeId = model.EmployeeId,
+                    EmployeeId = _employeeId = model.EmployeeId,
                     FullName = _employeeService.GetById(model.EmployeeId).FullName,
                     NiNo = _employeeService.GetById(model.EmployeeId).NationalInsuranceNo,
                     PayDate = model.PayDate,
@@ -86,17 +86,17 @@ namespace PayCompute.Controllers
                     TaxCode = model.TaxCode,
                     HourlyRate = model.HourlyRate,
                     HoursWorked = model.HoursWorked,
-                    ContractualHours = contractualEarnings = model.ContractualHours,
-                    OvertimeHours = overtimeHrs = _payComputationService.OvertimeHours(model.HoursWorked, model.ContractualHours),
+                    ContractualHours = _contractualEarnings = model.ContractualHours,
+                    OvertimeHours = _overtimeHrs = _payComputationService.OvertimeHours(model.HoursWorked, model.ContractualHours),
                     ContractualEarnings = _payComputationService.ContractualEarnings(model.ContractualHours, model.HoursWorked, model.HourlyRate),
-                    OvertimeEarnings = overtimeEarnings = _payComputationService.OvertimeEarnings(_payComputationService.OvertimeRate(model.HourlyRate), overtimeHrs),
-                    TotalEarnings = totalEarnings = _payComputationService.TotalEarnings(overtimeEarnings, contractualEarnings),
-                    Tax = tax = _taxService.TaxAmount(totalEarnings),
-                    UnionFee = unionFee = _employeeService.UnionFees(employeeId),
-                    SLC = studentLoan = _employeeService.StudentLoanRepaymentAmount(employeeId, totalEarnings),
-                    NIC = nationalInsurance = _nationalInsuranceContributionService.NIContribution(totalEarnings),
-                    TotalDeduction = totalDeduction = _payComputationService.TotalDeduction(tax, nationalInsurance, studentLoan, unionFee),
-                    NetPayment = _payComputationService.NetPay(totalEarnings, totalDeduction)
+                    OvertimeEarnings = _overtimeEarnings = _payComputationService.OvertimeEarnings(_payComputationService.OvertimeRate(model.HourlyRate), _overtimeHrs),
+                    TotalEarnings = _totalEarnings = _payComputationService.TotalEarnings(_overtimeEarnings, _contractualEarnings),
+                    Tax = _tax = _taxService.TaxAmount(_totalEarnings),
+                    UnionFee = _unionFee = _employeeService.UnionFees(_employeeId),
+                    SLC = _studentLoan = _employeeService.StudentLoanRepaymentAmount(_employeeId, _totalEarnings),
+                    NIC = _nationalInsurance = _nationalInsuranceContributionService.NIContribution(_totalEarnings),
+                    TotalDeduction = _totalDeduction = _payComputationService.TotalDeduction(_tax, _nationalInsurance, _studentLoan, _unionFee),
+                    NetPayment = _payComputationService.NetPay(_totalEarnings, _totalDeduction)
                 };
                 await _payComputationService.CreateAsync(payRecord);
                 return RedirectToAction(nameof(Index));
@@ -122,14 +122,14 @@ namespace PayCompute.Controllers
                 NiNo = paymentRecord.NiNo,
                 PayDate = paymentRecord.PayDate,
                 PayMonth = paymentRecord.PayMonth,
-                TaxYearId = taxYearId = paymentRecord.TaxYearId,
-                Year = _payComputationService.GetTaxYearById(taxYearId).YearOfTax,
+                TaxYearId = _taxYearId = paymentRecord.TaxYearId,
+                Year = _payComputationService.GetTaxYearById(_taxYearId).YearOfTax,
                 TaxCode = paymentRecord.TaxCode,
-                HourlyRate = hourlyRate = paymentRecord.HourlyRate,
+                HourlyRate = _hourlyRate = paymentRecord.HourlyRate,
                 HoursWorked = paymentRecord.HoursWorked,
                 ContractualHours = paymentRecord.ContractualHours,
                 OvertimeHours = paymentRecord.OvertimeHours,
-                OvertimeRate = _payComputationService.OvertimeRate(hourlyRate),
+                OvertimeRate = _payComputationService.OvertimeRate(_hourlyRate),
                 ContractualEarnings = paymentRecord.ContractualEarnings,
                 OvertimeEarnings = paymentRecord.OvertimeEarnings,
                 Tax = paymentRecord.Tax,
@@ -162,14 +162,14 @@ namespace PayCompute.Controllers
                 NiNo = paymentRecord.NiNo,
                 PayDate = paymentRecord.PayDate,
                 PayMonth = paymentRecord.PayMonth,
-                TaxYearId = taxYearId = paymentRecord.TaxYearId,
-                Year = _payComputationService.GetTaxYearById(taxYearId).YearOfTax,
+                TaxYearId = _taxYearId = paymentRecord.TaxYearId,
+                Year = _payComputationService.GetTaxYearById(_taxYearId).YearOfTax,
                 TaxCode = paymentRecord.TaxCode,
-                HourlyRate = hourlyRate = paymentRecord.HourlyRate,
+                HourlyRate = _hourlyRate = paymentRecord.HourlyRate,
                 HoursWorked = paymentRecord.HoursWorked,
                 ContractualHours = paymentRecord.ContractualHours,
                 OvertimeHours = paymentRecord.OvertimeHours,
-                OvertimeRate = _payComputationService.OvertimeRate(hourlyRate),
+                OvertimeRate = _payComputationService.OvertimeRate(_hourlyRate),
                 ContractualEarnings = paymentRecord.ContractualEarnings,
                 OvertimeEarnings = paymentRecord.OvertimeEarnings,
                 Tax = paymentRecord.Tax,
