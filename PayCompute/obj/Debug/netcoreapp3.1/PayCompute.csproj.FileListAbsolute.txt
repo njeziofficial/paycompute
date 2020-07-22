@@ -198,3 +198,4 @@ C:\Projects\PayComputeApp\PayCompute\bin\Debug\netcoreapp3.1\Microsoft.Extension
 C:\Projects\PayComputeApp\PayCompute\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\Razor\Views\Pay\Index.cshtml.g.cs
 C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\Razor\Views\Pay\Create.cshtml.g.cs
+C:\Projects\PayComputeApp\PayCompute\obj\Debug\netcoreapp3.1\Razor\Views\Pay\Detail.cshtml.g.cs
