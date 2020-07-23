@@ -27,66 +27,66 @@
                 <div class="col-md-12 table-responsive-md">
                     <table class="table table-striped">
                         <thead class="table-dark">
-                        <tr>
-                            <th>Earnings</th>
-                            <th>Hours</th>
-                            <th>Rates</th>
-                            <th>Amount</th>
-                            <th>Deductions</th>
-                            <th>Amount</th>
-                        </tr>
+                            <tr>
+                                <th>Earnings</th>
+                                <th>Hours</th>
+                                <th>Rates</th>
+                                <th>Amount</th>
+                                <th>Deductions</th>
+                                <th>Amount</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td><b>Basic:</b></td>
-                            <td>@Model.ContractualHours.ToString("f")</td>
-                            <td>@Model.HourlyRate.ToString("f")</td>
-                            <td>@Model.ContractualEarnings.ToString("C")</td>
-                            <td><b>Tax: </b></td>
-                            <td>@Model.Tax.ToString("C")</td>
-                        </tr>
-                        <tr>
-                            <td><b>Overtime:</b></td>
-                            <td>@Model.OvertimeHours.ToString("f")</td>
-                            <td>@Model.OvertimeRate.ToString("f2")</td>
-                            <td>@Model.OvertimeEarnings.ToString("C")</td>
-                            <td><b>NIC: </b></td>
-                            <td>@Model.NIC.ToString("C")</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><b>Union: </b></td>
-                            <td>@Model.UnionFee.Value.ToString("C")</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><b>SLC: </b></td>
-                            <td>@Model.SLC.Value.ToString("C")</td>
-                        </tr>
-                        <tr>
-                            <td><b>Total:</b></td>
-                            <td>@Model.HoursWorked</td>
-                            <td></td>
-                            <td>@Model.TotalEarnings.ToString("C")</td>
-                            <td></td>
-                            <td>@Model.TotalDeduction.ToString("C")</td>
-                        </tr>
+                            <tr>
+                                <td><b>Basic:</b></td>
+                                <td>@Model.ContractualHours.ToString("f")</td>
+                                <td>@Model.HourlyRate.ToString("f")</td>
+                                <td>@Model.ContractualEarnings.ToString("C")</td>
+                                <td><b>Tax: </b></td>
+                                <td>@Model.Tax.ToString("C")</td>
+                            </tr>
+                            <tr>
+                                <td><b>Overtime:</b></td>
+                                <td>@Model.OvertimeHours.ToString("f")</td>
+                                <td>@Model.OvertimeRate.ToString("f2")</td>
+                                <td>@Model.OvertimeEarnings.ToString("C")</td>
+                                <td><b>NIC: </b></td>
+                                <td>@Model.NIC.ToString("C")</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><b>Union: </b></td>
+                                <td>@Model.UnionFee.Value.ToString("C")</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><b>SLC: </b></td>
+                                <td>@Model.SLC.Value.ToString("C")</td>
+                            </tr>
+                            <tr>
+                                <td><b>Total:</b></td>
+                                <td>@Model.HoursWorked</td>
+                                <td></td>
+                                <td>@Model.TotalEarnings.ToString("C")</td>
+                                <td></td>
+                                <td>@Model.TotalDeduction.ToString("C")</td>
+                            </tr>
                         </tbody>
                         <tfoot>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="table-dark"><b>NET PAY: </b></td>
-                            <td class="table-dark">@Model.NetPayment.ToString("C")</td>
-                        </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="table-dark"><b>NET PAY: </b></td>
+                                <td class="table-dark">@Model.NetPayment.ToString("C")</td>
+                            </tr>
                         </tfoot>
                     </table>
                 </div>
